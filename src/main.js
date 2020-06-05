@@ -4,9 +4,11 @@ import router from './router'
 import store from './store'
 
 // Vant
-import Vant from 'vant';
-import 'vant/lib/index.less';
-Vue.use(Vant);
+import './common/vant'
+import 'vant/lib/index.less'
+
+import './components/lib/index'
+import './icons'
 
 // less
 import './assets/less/lib/index.less';

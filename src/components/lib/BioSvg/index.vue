@@ -63,7 +63,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
   .svg-icon {
     width: 1em;
     height: 1em;

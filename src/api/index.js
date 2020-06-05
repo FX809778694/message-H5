@@ -1,3 +1,3 @@
 module.exports = {
-  test: '/edc/crfmng/crfmngtitle.do',
+  test: '/login/getVerify.do',
 };

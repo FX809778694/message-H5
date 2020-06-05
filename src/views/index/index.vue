@@ -11,7 +11,9 @@
     </div>
 
     <div class="confirm-btn" :class="{ 'iphoneX': isIphoneX && isWXBrowser }">
-      <a class="">确认</a>
+      <van-button color="linear-gradient(to right, #2CB6FF, #2EDBFD)" round block type="info" >
+        确认
+      </van-button>
     </div>
   </div>
 </template>

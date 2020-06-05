@@ -16,3 +16,5 @@ export const stingReg = (rule, value, callback) => {
     }
   }
 };
+
+export const IDReg = /(^\d{15}$)|(^\d{17}(\d|X|x)$)/
