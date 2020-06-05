@@ -1,19 +1,30 @@
 <template>
   <div id="app">
     <router-view/>
-    <van-tabbar route safe-area-inset-bottom>
-      <van-tabbar-item
-        replace
-        to="/index"
-        icon="home-o">
-        首页
-      </van-tabbar-item>
-      <van-tabbar-item
-        replace
-        to="/subjectList"
-        icon="friends-o">
-        受试者
-      </van-tabbar-item>
-    </van-tabbar>
   </div>
 </template>
+<script>
+import {isIphoneBangs} from './common/utils'
+import { mapMutations } from 'vuex';
+
+export default {
+  name: 'App',
+
+  data () {
+    return {
+
+    }
+  },
+
+  created () {
+    this.updateIsIphoneX(isIphoneBangs());
+    this.updateIsWXBrowser(/MicroMessenger/i.test(navigator.userAgent))
+  },
+
+  methods: {
+    ...mapMutations('publicStore', ['updateIsIphoneX', 'updateIsWXBrowser']),
+  }
+
+}
+
+</script>

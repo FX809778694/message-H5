@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { setSessionStorage } from '../common/utils';
 
 Vue.use(VueRouter);
 
@@ -11,17 +10,6 @@ const routersMap = [
     path: '/index',
     component: () => import('@/views/index/index'),
     name: 'home',
-    beforeEnter: (to, from, next) => {
-      if (to.query.token) {
-        setSessionStorage('token', to.query.token)
-      }
-      next();
-    },
-  },
-  {
-    path: '/subjectList',
-    component: () => import('@/views/subject-list/index'),
-    name: 'subjectList',
   },
   {
     path: '/login',

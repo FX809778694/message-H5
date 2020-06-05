@@ -1,9 +1,20 @@
 const publicStore = {
   namespaced: true,
 
-  state: {},
+  state: {
+    isIphoneX: false,
+    isWXBrowser: false
+  },
 
-  mutations: {}
+  mutations: {
+    updateIsIphoneX (state, payload) {
+      state.isIphoneX = payload
+    },
+
+    updateIsWXBrowser (state, payload) {
+      state.isWXBrowser = payload
+    },
+  }
 };
 
 export default publicStore
