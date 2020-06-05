@@ -6,7 +6,7 @@
       @click-left="onClickLeft"
     />
     <div class="con-wrap">
-      <h3>查询如下</h3>
+      <h3>您的个人不动产信息查询结果如下</h3>
       <div class="main">
         <van-list
           v-model="loading"
@@ -18,7 +18,26 @@
             v-for="(item, index) in listData"
             :key="index"
             class="con-card">
-            hahahahaahah
+            <div class="card-item">
+              <p>权利人姓名：</p>
+              <p>{{item.name}}</p>
+            </div>
+            <div class="card-item">
+              <p>描述：</p>
+              <p>{{item.text}}</p>
+            </div>
+            <div class="card-item">
+              <p>编号：</p>
+              <p>{{item.number}}</p>
+            </div>
+            <div class="card-item">
+              <p>使用方式：</p>
+              <p>{{item.use}}</p>
+            </div>
+            <div class="card-item">
+              <p>地址：</p>
+              <p>{{item.address}}</p>
+            </div>
           </div>
         </van-list>
       </div>
@@ -55,32 +74,33 @@ export default {
     },
 
     getListData () {
-      // if (this.page <= this.pages) {
-      //   const { data } = await this.$get(subjectlist, {page: this.page, size: 10, appSearch: this.searchKey});
-      //   const data = [];
-      //   if (data && data.list) {
-      //     this.listData = [...this.listData, ...data.list];
-      //     this.page = this.page + 1;
-      //     this.pages = data.pages;
-      //     this.listLoading = false;
-      //   }
-      // }
-      // this.finished = this.page > this.pages
+      this.listData = [{
+        name: '周晓丽',
+        text: '我是一个粉刷匠。粉刷本领强！',
+        number: 11123456786543456543456545,
+        use: '住宅',
+        address: '北京市昌平区天通西苑三区21号楼7单元888（无敌寂寞帅呆苦逼天上人间大大大大奥多多公司）'
+      }, {
+        name: '周晓丽',
+        text: '我是一个粉刷匠。粉刷本领强！',
+        number: 11123456786543456543456545,
+        use: '住宅',
+        address: '北京市昌平区天通西苑三区21号楼7单元888（无敌寂寞帅呆苦逼天上人间大大大大奥多多公司）'
+      }, {
+        name: '周晓丽',
+        text: '我是一个粉刷匠。粉刷本领强！',
+        number: 11123456786543456543456545,
+        use: '住宅',
+        address: '北京市昌平区天通西苑三区21号楼7单元888（无敌寂寞帅呆苦逼天上人间大大大大奥多多公司）'
+      }, {
+        name: '周晓丽',
+        text: '我是一个粉刷匠。粉刷本领强！',
+        number: 11123456786543456543456545,
+        use: '住宅',
+        address: '北京市昌平区天通西苑三区21号楼7单元888（无敌寂寞帅呆苦逼天上人间大大大大奥多多公司）'
+      }]
 
-      // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-      setTimeout(() => {
-        for (let i = 0; i < 10; i++) {
-          this.listData.push(this.listData.length + 1);
-        }
-
-        // 加载状态结束
-        this.loading = false;
-
-        // 数据全部加载完成
-        if (this.listData.length >= 40) {
-          this.finished = true;
-        }
-      }, 1000);
+      this.finished = true;
     }
   }
 
@@ -100,7 +120,7 @@ export default {
 
     h3{
       padding: 10px 0;
-      font-size: 16px;
+      font-size: 15px;
       text-align: center;
     }
   }
@@ -118,6 +138,21 @@ export default {
     border: 1px solid #c8c9cc;
     min-height: 60px;
     border-radius: 4px;
+    margin-top: 10px;
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
+  }
+  .card-item{
+    padding: 10px;
+    font-size: 14px;
+    display: flex;
+    justify-content: flex-start;
+    p:first-child{
+      width: 100px;
+      text-align: right;
+    }
+    p:last-child{
+      width: calc(100% - 100px);
+    }
   }
 
 </style>

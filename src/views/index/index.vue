@@ -16,7 +16,11 @@
     </div>
 
     <div class="confirm-btn" :class="{ 'iphoneX': isIphoneX && isWXBrowser }">
-      <van-button color="linear-gradient(to right, #2CB6FF, #2EDBFD)" round block type="info" >
+      <van-button
+        color="linear-gradient(to right, #2CB6FF, #2EDBFD)"
+        block
+        @click="enterLogin"
+        type="info">
         确认
       </van-button>
     </div>
@@ -41,6 +45,12 @@ export default {
 
   created () {
 
+  },
+
+  methods: {
+    enterLogin () {
+      this.$router.push('/login')
+    }
   }
 
 }
