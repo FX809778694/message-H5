@@ -6,16 +6,29 @@
       <van-form validate-first @failed="onFailed">
         <van-field
           v-model="userName"
-          type="password"
-          name="pattern"
-          :rules="[{ pattern, message: '请输入正确内容', trigger: 'onBlur' }]"
+          name="222"
+          :rules="userNameRule"
           label="身份证号" />
 
-        <div style="margin: 16px;">
-          <van-button color="linear-gradient(to right, #2CB6FF, #2EDBFD)" round block type="info" native-type="submit">
-            提交
-          </van-button>
-        </div>
+        <van-field
+          v-model="password"
+          name="222"
+          :rules="passwordNameRule"
+          label="密码" />
+
+<!--        <van-field-->
+<!--          v-model="password"-->
+<!--          type="password"-->
+<!--          name="密码"-->
+<!--          label="密码"-->
+<!--          :rules="[{ required: true, message: '请填写密码' }]"-->
+<!--        />-->
+
+<!--        <div class="form-btn">-->
+<!--          <van-button color="linear-gradient(to right, #2CB6FF, #2EDBFD)" round block type="info" native-type="submit">-->
+<!--            提交-->
+<!--          </van-button>-->
+<!--        </div>-->
       </van-form>
 
     </div>
@@ -25,25 +38,34 @@
 
 <script>
 import {test} from '../../api'
-import {IDReg} from '../../common/const'
 
 export default {
   name: 'Login',
 
   data () {
+
+    const validator1 =  (val) => {
+      return /(^\d{15}$)|(^\d{17}(\d|X|x)$)/.test(val);
+    };
+
+    const validator2 =  (val) => {
+      return /(^\d{15}$)|(^\d{17}(\d|X|x)$)/.test(val);
+    };
+
     return {
       userName: '',
       password: '',
-      pattern: ''
+
+      userNameRule: [{ validator: validator1, message: '请输入正确内容' }],
+      passwordNameRule: [{ validator: validator2, message: '请输入正确内容' }]
     }
   },
 
   created () {
-    // this.testApi();
-    this.pattern = IDReg;
   },
 
   methods: {
+
     async testApi () {
       const res = await this.$get(test);
       console.log(res)
@@ -72,6 +94,9 @@ export default {
 
     .form-wrap{
 
+    }
+    .form-btn{
+      margin-top: 20px;
     }
   }
 </style>
