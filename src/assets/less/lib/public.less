@@ -1,0 +1,100 @@
+@import './var';
+
+.flex-center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-vertical {
+  display: flex;
+  align-items: center;
+}
+
+.flex-between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+// 只显示一行超出...
+.only-one-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 只显示两行超出...
+.only-two-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.flex-1 {
+  flex: 1 1 auto; //兼容Ie 注意ie下flex: 1被解析为flex: 1 1 0
+  flex-grow: 1;
+}
+
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background: hsla(0, 0%, 53%, 0.4);
+  }
+
+  &:hover::-webkit-scrollbar-track {
+    background: hsla(0, 0%, 53%, 0.1);
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.overflow-h {
+  overflow: hidden;
+}
+
+.full {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.pr {
+  position: relative !important;
+}

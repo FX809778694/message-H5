@@ -1,0 +1,89 @@
+// global transition css
+
+/* fade */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.28s;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+/* breadcrumb */
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all .3s;
+}
+
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.breadcrumb-move {
+  transition: all .5s;
+}
+
+.breadcrumb-leave-active {
+  position: absolute;
+}
+
+/* fadeInLeft */
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0)
+  }
+
+  to {
+    opacity: 1;
+    transform: none
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0)
+  }
+
+  to {
+    opacity: .8;
+    transform: none
+  }
+}
+
+.fadeInLeft-enter-active {
+  animation: fadeInLeft 1s;
+}
+
+.fadeInLeft-leave-active {
+  animation: fadeInRight .5s reverse;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.fadeInLeft-delay-enter-active {
+  animation: fadeInLeft 1s;
+}
+
+.fadeInLeft-delay-leave-active {
+  animation: fadeInRight .5s reverse;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* search-item */
+.search-item-fade-enter,
+.search-item-fade-leave-active {
+  opacity: 0;
+}
+
+.search-item-fade-leave-active {
+  position: absolute;
+}
