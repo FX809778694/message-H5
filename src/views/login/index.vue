@@ -69,6 +69,7 @@ export default {
     async testApi () {
       const res = await this.$get(test);
       console.log(res)
+      // this.$router.push('/masterTable');
     },
 
     onFailed (errorInfo) {

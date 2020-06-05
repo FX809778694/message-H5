@@ -16,6 +16,11 @@ const routersMap = [
     component: () => import('@/views/login/index'),
     name: 'login',
   },
+  {
+    path: '/list',
+    component: () => import('@/views/data-list/index'),
+    name: 'DataList',
+  },
 ];
 
 const router = new VueRouter({
