@@ -2,20 +2,10 @@ import Vue from 'vue';
 import axios from 'axios';
 import qs from 'qs';
 import Config from './http-config';
-import { Message } from 'element-ui';
-import i18n from '@/i18n';
+import { Toast } from 'vant';
+// import i18n from '@/i18n';
 import { getSessionStorage } from './utils';
-
-function httpMessage (message = i18n.t('public.networkErr'), type = 'error') {
-  Message.closeAll();
-
-  Message({
-    message,
-    type,
-    title: type === 'error' ? i18n.t('public.error') : i18n.t('public.notice'),
-    duration: 3000
-  })
-}
+import router from '../router'
 
 const instance = axios.create({
   baseURL: Config.baseUrl,
@@ -32,9 +22,6 @@ const instance = axios.create({
  * */
 instance.interceptors.request.use(
   config => {
-    config.headers.token = getSessionStorage('token') || '';
-    config.headers.crfstatus = getSessionStorage('crfstatus') || '';
-
     return config;
   },
   err => {
@@ -57,38 +44,39 @@ instance.interceptors.response.use(
      * 距维护30分钟之内，提示
      * */
     if (res.headers.beforenote)
-      httpMessage(decodeURIComponent(res.headers.beforenote), 'warning');
+      Toast(decodeURIComponent(res.headers.beforenote));
 
     if (res && res.data && !res.data.success) {
-      httpMessage(res.data.msg);
+      Toast(res.data.msg)
     }
     return res.data
   },
 
   err => {
-    console.log('接口异常: \n', err.response);
     if (!getSessionStorage('token')) {
-      httpMessage(i18n.t('public.loginAgain'));
+      Toast('用户信息失效，请重新登录');
       setTimeout(() => {
         window.open(err.response.headers.logout, '_self')
       }, 2000)
     }
 
     if (err.response.status === 500) {
-      httpMessage(i18n.t('public.serverError'))
+      Toast.fail('服务器错误');
     } else if (err.response.status === 400) {
-      httpMessage(i18n.t('public.parameterError'))
+      Toast('接口参数错误')
     } else if (err.response.status === 401) {
       if (err.response.headers && err.response.headers.logout) {
         if (err.response.headers.msg) {
-          httpMessage(decodeURIComponent(err.response.headers.msg), 'warning');
+          Toast(decodeURIComponent(err.response.headers.msg));
           setTimeout(() => {
-            window.open(err.response.headers.logout, '_self')
+            router.push({path: '/login'})
           }, 2000)
         } else {
-          window.open(err.response.headers.logout, '_self')
+          router.push({path: '/login'})
         }
       }
+    } else if (err.response.status === 404) {
+      Toast('404')
     }
 
     return Promise.reject(err);
@@ -106,7 +94,8 @@ http.post = (url, data = {}) => {
   return instance.post(url + '?time=' + new Date().getTime(), data);
 };
 
-Vue.prototype.$http = http;
+Vue.prototype.$get = http.get;
+Vue.prototype.$post = http.post;
 export default http;
 
 /*
