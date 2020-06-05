@@ -1,13 +1,18 @@
 <template>
   <div class="main-wrap">
     <div class="reminder-info">
-      <p>温馨提示</p>
-      <p>温馨提示</p>
-      <p>温馨提示</p>
+      <p>1、不动产登记资料查询结果可以用来买卖、抵押、诉讼等用途。</p>
+      <p>2、您需要进行人脸识别验证。</p>
+      <p>3、本功能查询您名下所有不动产的基本信息。</p>
+      <p>4、您需要选择其中一套不动产，获取查询结果。</p>
+      <p>5、本结果提供下载功能，您可以下载结果的PDF文件，文件上已经加盖了不动产登记资料查询电子印章。</p>
+      <p>6、最终效果如下示例</p>
     </div>
 
     <div class="tip-img">
-
+      <img src="../../assets/img/tipImg1.png">
+      <img src="../../assets/img/tipImg2.png">
+      <img src="../../assets/img/tipImg3.png">
     </div>
 
     <div class="confirm-btn" :class="{ 'iphoneX': isIphoneX && isWXBrowser }">
@@ -46,13 +51,22 @@ export default {
 
   .main-wrap {
     background: #fff;
-    padding: 20px;
+    padding: 10px;
     .reminder-info{
 
       p{
         margin-top: 4px;
         font-size: 16px;
         color: #666666;
+      }
+    }
+    .tip-img{
+      img{
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid #000;
+        margin-top: 10px;
       }
     }
     .confirm-btn{
@@ -63,7 +77,6 @@ export default {
       left: 0;
       background: #fff;
       padding: 20px;
-      border: 1px solid red;
       text-align: center;
       box-sizing: border-box;
 
