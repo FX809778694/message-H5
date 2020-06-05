@@ -10,25 +10,25 @@
           :rules="userNameRule"
           label="身份证号" />
 
-        <van-field
-          v-model="password"
-          name="222"
-          :rules="passwordNameRule"
-          label="密码" />
-
 <!--        <van-field-->
 <!--          v-model="password"-->
-<!--          type="password"-->
-<!--          name="密码"-->
-<!--          label="密码"-->
-<!--          :rules="[{ required: true, message: '请填写密码' }]"-->
-<!--        />-->
+<!--          name="222"-->
+<!--          :rules="passwordNameRule"-->
+<!--          label="密码" />-->
 
-<!--        <div class="form-btn">-->
-<!--          <van-button color="linear-gradient(to right, #2CB6FF, #2EDBFD)" round block type="info" native-type="submit">-->
-<!--            提交-->
-<!--          </van-button>-->
-<!--        </div>-->
+        <van-field
+          v-model="password"
+          type="password"
+          name="密码"
+          label="密码"
+          :rules="[{ required: true, message: '请填写密码' }]"
+        />
+
+        <div class="form-btn">
+          <van-button color="linear-gradient(to right, #2CB6FF, #2EDBFD)" round block type="info" native-type="submit">
+            提交
+          </van-button>
+        </div>
       </van-form>
 
     </div>
