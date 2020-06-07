@@ -4,7 +4,7 @@ const dev = {
 };
 
 const prod = {
-  baseUrl: '/'
+  baseUrl: 'https://zhix.tosone.cn'
 };
 
 const env = process.env.NODE_ENV;
