@@ -1,3 +1,3 @@
 module.exports = {
-  test: '/login/getVerify.do',
+  test: '/inquire',
 };

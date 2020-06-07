@@ -15,11 +15,11 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     port: 8080,
-    https: false,
+    https: true,
     hotOnly: false,
     proxy: {
       '/': {
-        target: 'http://dev.bioknow.net:18002', // dev 测试环境
+        target: 'https://zhix.tosone.cn', // dev 测试环境
         changeOrigin: true,
         ws: false
       }

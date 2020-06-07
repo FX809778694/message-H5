@@ -17,7 +17,7 @@
 
         <van-field
           v-model="IDNumber"
-          name="222"
+          name="IDNumber"
           :rules="IDNumberRule"
           label="身份证号：" />
 
@@ -58,6 +58,7 @@
 
 <script>
 import {test} from '../../api'
+import { Toast } from 'vant';
 
 export default {
   name: 'Login',
@@ -87,10 +88,17 @@ export default {
       this.$router.go(-1)
     },
 
-    async onSubmit () {
-      // const res = await this.$get(test);
-      // console.log(res)
-      this.$router.push('/list');
+    async onSubmit (values) {
+      if (!values.checkbox) {
+        Toast.fail('请您勾选确认认证授权');
+        return;
+      }
+      console.log(values)
+      const res = await this.$get(test, {
+        ID: values.IDNumber
+      });
+      console.log(res)
+      // this.$router.push('/list');
     },
 
     onFailed (errorInfo) {
