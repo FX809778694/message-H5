@@ -40,15 +40,9 @@ instance.interceptors.request.use(
  * */
 instance.interceptors.response.use(
   res => {
-    /**
-     * 距维护30分钟之内，提示
-     * */
-    if (res.headers.beforenote)
-      Toast(decodeURIComponent(res.headers.beforenote));
-
-    if (res && res.data && !res.data.success) {
-      Toast(res.data.msg)
-    }
+    // if (res && res.data && !res.data.success) {
+    //   Toast(res.data.msg)
+    // }
     return res.data
   },
 
@@ -59,25 +53,25 @@ instance.interceptors.response.use(
         window.open(err.response.headers.logout, '_self')
       }, 2000)
     }
-
-    if (err.response.status === 500) {
-      Toast.fail('服务器错误');
-    } else if (err.response.status === 400) {
-      Toast('接口参数错误')
-    } else if (err.response.status === 401) {
-      if (err.response.headers && err.response.headers.logout) {
-        if (err.response.headers.msg) {
-          Toast(decodeURIComponent(err.response.headers.msg));
-          setTimeout(() => {
-            router.push({path: '/login'})
-          }, 2000)
-        } else {
-          router.push({path: '/login'})
-        }
-      }
-    } else if (err.response.status === 404) {
-      Toast('404')
-    }
+    //
+    // if (err.response.status === 500) {
+    //   Toast.fail('服务器错误');
+    // } else if (err.response.status === 400) {
+    //   Toast('接口参数错误')
+    // } else if (err.response.status === 401) {
+    //   if (err.response.headers && err.response.headers.logout) {
+    //     if (err.response.headers.msg) {
+    //       Toast(decodeURIComponent(err.response.headers.msg));
+    //       setTimeout(() => {
+    //         router.push({path: '/login'})
+    //       }, 2000)
+    //     } else {
+    //       router.push({path: '/login'})
+    //     }
+    //   }
+    // } else if (err.response.status === 404) {
+    //   Toast('404')
+    // }
 
     return Promise.reject(err);
   }
@@ -91,7 +85,7 @@ http.get = async (url, params) => {
 };
 
 http.post = (url, data = {}) => {
-  return instance.post(url + '?time=' + new Date().getTime(), data);
+  return instance.post(url, data);
 };
 
 Vue.prototype.$get = http.get;

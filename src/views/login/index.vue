@@ -93,12 +93,21 @@ export default {
         Toast.fail('请您勾选确认认证授权');
         return;
       }
-      console.log(values)
-      const res = await this.$get(test, {
+      // console.log(values)
+      const res = await this.$post(test, {
         ID: values.IDNumber
       });
       console.log(res)
-      // this.$router.push('/list');
+      Toast({
+        type: 'success',
+        message: '登录成功',
+        duration: 600,
+        onOpened: () => {
+          this.$setLocalStorage('IDNumber', values.IDNumber)
+          this.$router.push('/list');
+        }
+      })
+
     },
 
     onFailed (errorInfo) {

@@ -23,20 +23,36 @@
               <p>{{item.name}}</p>
             </div>
             <div class="card-item">
-              <p>描述：</p>
-              <p>{{item.text}}</p>
+              <p>证件号码：</p>
+              <p>{{item.ID}}</p>
             </div>
             <div class="card-item">
-              <p>编号：</p>
-              <p>{{item.number}}</p>
+              <p>不动产坐落：</p>
+              <p>{{item.locate}}</p>
             </div>
             <div class="card-item">
-              <p>使用方式：</p>
+              <p>不动产单元号：</p>
+              <p>{{item.estate_num}}</p>
+            </div>
+            <div class="card-item">
+              <p>不动产权证号：</p>
+              <p>{{item.estate_card}}</p>
+            </div>
+            <div class="card-item">
+              <p>共有方式：</p>
+              <p>{{item.type}}</p>
+            </div>
+            <div class="card-item">
+              <p>面积：</p>
+              <p>{{item.area}}</p>
+            </div>
+            <div class="card-item">
+              <p>用途：</p>
               <p>{{item.use}}</p>
             </div>
             <div class="card-item">
-              <p>地址：</p>
-              <p>{{item.address}}</p>
+              <p>登记状态：</p>
+              <p>{{item.status}}</p>
             </div>
           </div>
         </van-list>
@@ -47,6 +63,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import {test} from "../../api";
 
 export default {
   name: 'DataList',
@@ -56,7 +73,8 @@ export default {
       loading: false,
       finished: false,
       finishedText: '没有更多了',
-      listData: []
+      listData: [],
+      isNullData: false
     }
   },
 
@@ -65,7 +83,7 @@ export default {
   },
 
   created () {
-    this.getListData();
+    // this.getListData();
   },
 
   methods: {
@@ -73,32 +91,14 @@ export default {
       this.$router.go(-1)
     },
 
-    getListData () {
-      this.listData = [{
-        name: '周晓丽',
-        text: '我是一个粉刷匠。粉刷本领强！',
-        number: 11123456786543456543456545,
-        use: '住宅',
-        address: '北京市昌平区天通西苑三区21号楼7单元888（无敌寂寞帅呆苦逼天上人间大大大大奥多多公司）'
-      }, {
-        name: '周晓丽',
-        text: '我是一个粉刷匠。粉刷本领强！',
-        number: 11123456786543456543456545,
-        use: '住宅',
-        address: '北京市昌平区天通西苑三区21号楼7单元888（无敌寂寞帅呆苦逼天上人间大大大大奥多多公司）'
-      }, {
-        name: '周晓丽',
-        text: '我是一个粉刷匠。粉刷本领强！',
-        number: 11123456786543456543456545,
-        use: '住宅',
-        address: '北京市昌平区天通西苑三区21号楼7单元888（无敌寂寞帅呆苦逼天上人间大大大大奥多多公司）'
-      }, {
-        name: '周晓丽',
-        text: '我是一个粉刷匠。粉刷本领强！',
-        number: 11123456786543456543456545,
-        use: '住宅',
-        address: '北京市昌平区天通西苑三区21号楼7单元888（无敌寂寞帅呆苦逼天上人间大大大大奥多多公司）'
-      }]
+    async getListData () {
+
+      const res = await this.$post(test, {
+        ID: this.$getLocalStorage('IDNumber')
+      });
+      this.listData = res.data;
+      this.isNullData = res.data <= 0;
+      if (this.isNullData) this.finishedText = "暂时未查询到属于您的数据";
 
       this.finished = true;
     }

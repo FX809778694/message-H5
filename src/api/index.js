@@ -1,3 +1,3 @@
 module.exports = {
-  test: '/inquire',
+  test: '/inquire/',
 };
